@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
  <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Online Newa Portal</title>
+  <title>Online News Portal</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -131,28 +131,25 @@
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
+          <i class="fas fa-cog"></i>
         </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right"> 
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
+          <a href="{{route('social.setting')}}" class="dropdown-item">
+            <i class="fas fa-share-alt-square mr-2"></i> Social Setting
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
+        <a href="{{route('seo.setting')}}" class="dropdown-item">
+            <i class="fas fa-sync-alt mr-2"></i> SEO Setting
           </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
+             <div class="dropdown-divider"></div>
+        <a href="{{route('prayer.setting')}}" class="dropdown-item">
+            <i class="fas fa-history mr-2"></i> Prayer Time
           </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                  <div class="dropdown-divider"></div>
+        <a href="{{route('livetv.setting')}}" class="dropdown-item">
+            <i class="fas fa-tv mr-2"></i> Live Tv
+          </a>
         </div>
       </li>
 
@@ -203,7 +200,8 @@
             </a>
             
           </li>
-     
+      
+      @if(Auth::user()->category==1)
           <li class="nav-item has-treeview">
             <a href="" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -229,6 +227,8 @@
             
             </ul>
           </li>
+          @endif
+          @if(Auth::user()->district==1)
           <li class="nav-item has-treeview">
             <a href="" class="nav-link">
               <i class="nav-icon fas fa-dungeon"></i>
@@ -255,6 +255,9 @@
             
             </ul>
           </li>
+          @endif
+          @if(Auth::user()->post==1)
+
                     <li class="nav-item has-treeview">
             <a href="" class="nav-link">
               <i class="nav-icon fab fa-usps"></i>
@@ -281,6 +284,120 @@
             
             </ul>
           </li>
+          @endif
+          @if(Auth::user()->more_setting==1)
+            <li class="nav-item has-treeview">
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-cog"></i>
+
+              <p>
+                More Setting
+                <i class="fas fa-angle-left right"></i>
+                
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('notice')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Notice</p>
+                </a>
+              </li>
+                <li class="nav-item">
+                <a href="{{route('website')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Important Website</p>
+                </a>
+              </li>
+                  <li class="nav-item">
+                <a href="{{route('website.setting')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Website Setting</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          @endif
+          @if(Auth::user()->gallery==1)
+
+                <li class="nav-item has-treeview">
+            <a href="" class="nav-link">
+              <i class="nav-icon fab fa-envira"></i>
+              
+
+              <p>
+                Gallery
+                <i class="fas fa-angle-left right"></i>
+                
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('photo')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Photo Gallery</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('video')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Video Gallery</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          @endif
+        
+        @if(Auth::user()->ads==1)
+              <li class="nav-item has-treeview">
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-cog"></i>
+
+              <p>
+                Advertisement
+                <i class="fas fa-angle-left right"></i>
+                
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                <a href="{{route('horizontal.ads')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ads</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          @endif
+          @if(Auth::user()->role==1)
+              <li class="nav-item has-treeview">
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-cog"></i>
+
+              <p>
+                User Role
+                <i class="fas fa-angle-left right"></i>
+                
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                <a href="{{route('add.user')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add User</p>
+                </a>
+              </li>
+            </ul>
+               <ul class="nav nav-treeview">
+                <li class="nav-item">
+                <a href="{{route('all.user')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>All User</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          @endif
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
